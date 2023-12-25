@@ -11,7 +11,6 @@ from .serializers import (
     LoginManagerSerializer,
     ResetPasswordConfirmSerializer,
     CustomUserSerializer,
-
 )
 
 from django.contrib.auth.tokens import default_token_generator
@@ -22,7 +21,6 @@ from django.conf import settings
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login, authenticate
-
 
 
 class RegisterUserView(generics.CreateAPIView):
@@ -125,9 +123,6 @@ class UserCRUDView(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
     permission_classes = [permissions.IsAdminUser]
-
-  
-    
 
 
 # =====Reset Password======

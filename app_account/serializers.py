@@ -13,8 +13,6 @@ from django.shortcuts import get_object_or_404
 from django.utils.http import urlsafe_base64_decode
 
 
-
-
 class CustomUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(write_only=True, required=True)
@@ -50,7 +48,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             full_name=validated_data.get("full_name", ""),
             password=validated_data["password"],
             token_auth=get_random_string(64),
-            is_active=False
+            is_active=False,
         )
 
         current_site = get_current_site(self.context["request"])
@@ -61,7 +59,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         )
 
         subject = "Подтверждение регистрации"
-        message = f'Подтвердите вашу регистрацию по ссылке: \n\n{protocol}://{domain}{confirmation_link}'
+        message = f"Подтвердите вашу регистрацию по ссылке: \n\n{protocol}://{domain}{confirmation_link}"
         from_email = config("EMAIL_HOST_USER")
         to_email = validated_data["email"]
         send_mail(subject, message, from_email, [to_email], fail_silently=False)

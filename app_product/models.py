@@ -1,17 +1,15 @@
 from django.db import models
 
 
-
-
 class Category(models.Model):
     sub_category = models.ForeignKey(
-        'self',
+        "self",
         on_delete=models.CASCADE,
-        related_name='subcategories',
+        related_name="subcategories",
         null=True,
         blank=True,
         limit_choices_to={
-            'is_sub': False,
+            "is_sub": False,
         },
     )
     is_sub = models.BooleanField(default=False)
@@ -24,14 +22,13 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-   
     category = models.ForeignKey(
         to=Category,
         on_delete=models.CASCADE,
-        related_name='products',
+        related_name="products",
     )
     name = models.CharField(max_length=150)
-    image = models.ImageField(upload_to='media/%Y%m%d/',blank=True,null=True)
+    image = models.ImageField(upload_to="media/%Y%m%d/", blank=True, null=True)
     description = models.TextField()
     price = models.PositiveBigIntegerField(default=0)
     sales_number = models.PositiveSmallIntegerField(default=0)

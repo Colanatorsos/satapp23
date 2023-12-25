@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import generics,permissions,viewsets
+from rest_framework import generics, permissions, viewsets
 
 from django.shortcuts import get_object_or_404
 
@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from .serializers import ProductSerializer
 from .models import Product
 from celery import Celery
+
 # from .tasks import process_order
 
 # class AddToCart(APIView):
@@ -21,8 +22,6 @@ from celery import Celery
 #         request.session['cart'] = cart
 
 #         return Response({'message': 'Product added to cart'})
-    
-
 
 
 # class ProcessOrder(APIView):
@@ -37,7 +36,6 @@ from celery import Celery
 #         request.session['cart'] = {}
 
 #         return Response({'message': 'Order processed successfully'})
-    
 
 
 class ProductUserListView(generics.ListAPIView):
@@ -46,9 +44,7 @@ class ProductUserListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
-
 class ProductAdminViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAdminUser]
-

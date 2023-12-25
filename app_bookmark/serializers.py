@@ -12,7 +12,7 @@ class CreateBookmarkSerializer(serializers.Serializer):
         try:
             Product.confirmed.get(pk=product_id)
         except Product.DoesNotExist:
-            raise ValidationError('product with this id does not exist')
+            raise ValidationError("product with this id does not exist")
 
         return product_id
 
@@ -21,10 +21,10 @@ class BookmarkProductDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
-            'id',
-            'name',
-            'image',
-            'price',
+            "id",
+            "name",
+            "image",
+            "price",
         )
 
 
@@ -33,6 +33,4 @@ class ListBookmarkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bookmark
-        fields = (
-            'product',
-        )
+        fields = ("product",)
