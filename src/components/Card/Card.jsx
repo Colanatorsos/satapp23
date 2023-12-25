@@ -1,17 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import scss from './Card.module.scss'
 import photoOne from '../../assets/photo1.png'
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
+import { useActions } from './../../hooks/useActions';
 
-const Card = () => {
-  const data = {
-    img: [],
-    title: 'Бишкек, Парк Ататюрк, Масануева 58',
-    desc: '3 комнаты',
-    new: true,
-    added: '11.12.2023'
-  }
+const Card = ({data}) => {
+  const { addToCart, open } = useActions()
   return (
     <div className={scss.Card}>
       <div className={scss.Card__imgs}>
@@ -25,7 +20,7 @@ const Card = () => {
       <div className={scss.Card__info}>
         <div className={scss.Card__info_price}>
           <div>
-            <h3>4,000,000 COM</h3>
+            <h3>{data.price} COM</h3>
             <p>ЦЕНА</p>
           </div>
           <button>ОТКРЫТЬ</button>
@@ -40,7 +35,10 @@ const Card = () => {
             <p>Добавлено {data.added}</p>
             <div>
               <a href="/"><FaPhoneAlt />Позвонить</a>
-              <a href="/"><CiHeart />Сохранить</a>
+              <button onClick={() => {
+                addToCart(data)
+                open()
+              }}><CiHeart />Сохранить</button>
             </div>
           </div>
         </div>
