@@ -43,11 +43,12 @@ const CreateProduct = () => {
     };
 
     const addFile = (image) => {
-        setPost({ ...post, photos: [...post.photos, image.name] });
+        setPost({ ...post, photos: [...post.photos, image] });
     };
 
     const saveData = () => {
         const values = Object.values(post);
+        console.log(post);
 
         if (values.every((el) => el) && post.photos.length > 0) {
             addPost(post);

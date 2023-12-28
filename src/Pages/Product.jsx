@@ -7,7 +7,7 @@ import GeneralProductData from "../components/GeneralProductData/GeneralProductD
 import ProductText from "../components/ProductText/ProductText";
 import MyMap from "../components/Map/Map";
 import ProductHead from "../components/ProductHead/ProductHead";
-import ProductSlider from "../components/ProductSlider";
+import ProductSlider from "../components/ProductSlider/ProductSlider";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
@@ -19,7 +19,6 @@ const Product = () => {
     useEffect(() => {
         const postId = loaction.pathname.split("/")[2];
         const findPost = posts.find((el) => String(el.id) === postId);
-        console.log(findPost.photos);
         if (findPost) setPost(findPost);
     }, [posts]);
 
@@ -46,12 +45,7 @@ const Product = () => {
         <section>
             <Header />
             <Layout>
-                <Image
-                    height={240}
-                    width="100%"
-                    src={post.photos[0]}
-                    style={{ objectFit: "cover", borderRadius: "10px" }}
-                />
+                <ProductSlider images={post.photos} />
 
                 <ProductHead
                     date="11.12.2023"
@@ -64,8 +58,7 @@ const Product = () => {
                     ownership={post.ownership}
                     property={post.propertyType}
                 />
-                <ProductSlider />
-                <GeneralProductData />
+                <GeneralProductData text={post.description} />
                 <ProductText text={post.description} />
                 <MyMap />
             </Layout>
