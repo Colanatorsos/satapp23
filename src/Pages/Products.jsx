@@ -5,29 +5,30 @@ import Form from "../components/Form/Form";
 import { IoMdArrowDropdown } from "react-icons/io";
 import Card from "../components/Card/Card";
 import Favorite from "../components/Favorite/Favorite";
+import { useSelector } from "react-redux";
 //import axios from 'axios';
 
 const Products = () => {
-    const products = [
-        {
-            id: 0,
-            img: [],
-            title: "Бишкек, Парк Ататюрк, Масануева 58",
-            desc: "3 комнаты",
-            price: "4,000,000",
-            new: true,
-            added: "11.12.2023",
-        },
-        {
-            id: 1,
-            img: [],
-            title: "Бишкек, Парк Ататюрк, Масануева 57",
-            desc: "3 комнаты",
-            price: "2,000,000",
-            new: true,
-            added: "11.12.2023",
-        },
-    ];
+    // const products = [
+    //     {
+    //         id: 0,
+    //         img: [],
+    //         title: "Бишкек, Парк Ататюрк, Масануева 58",
+    //         desc: "3 комнаты",
+    //         price: "4,000,000",
+    //         new: true,
+    //         added: "11.12.2023",
+    //     },
+    //     {
+    //         id: 1,
+    //         img: [],
+    //         title: "Бишкек, Парк Ататюрк, Масануева 57",
+    //         desc: "3 комнаты",
+    //         price: "2,000,000",
+    //         new: true,
+    //         added: "11.12.2023",
+    //     },
+    // ];
     //const [products, setProducts] = useState([]);
 
     //useEffect(() => {
@@ -44,6 +45,7 @@ const Products = () => {
     //  fetchProducts(); // Вызываем функцию при монтировании компонента
     //}, []); // Пустой массив зависимостей, чтобы useEffect сработал только один раз при монтировании компонента
 
+    const products = useSelector((state) => state.posts.posts);
     return (
         <>
             <Favorite />

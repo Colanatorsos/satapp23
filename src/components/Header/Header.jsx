@@ -4,9 +4,11 @@ import scss from "./Header.module.scss";
 import LogoSVG from "../../assets/logo.svg";
 import Profile from "../../assets/Profile";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const [active, setActive] = useState(false);
+    const auth = useSelector((state) => state.user.auth);
     return (
         <header className={scss.header}>
             <div className={scss.div_seo_header}>
@@ -15,8 +17,12 @@ const Header = () => {
                     onClick={() => setActive(!active)}
                 ></span>
                 {/*<Logo className={scss.div_seo_header_logo} />*/}
-                <img src={LogoSVG} alt="" />
-                <Profile className={scss.div_seo_header_profile} />
+                <Link to="/">
+                    <img src={LogoSVG} alt="" />
+                </Link>
+                <Link to={auth ? "/settings" : "/signin"}>
+                    <Profile className={scss.div_seo_header_profile} />
+                </Link>
             </div>
             <div className={active ? scss.demo_active : scss.demo}>
                 <Link to="/">Главная</Link>

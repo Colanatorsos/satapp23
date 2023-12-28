@@ -32,7 +32,7 @@ const LogIn = () => {
     };
     return (
         <form className={scss.Form}>
-            <h1>Зарегистрируйте аккаунт</h1>
+            <h1>Войти аккаунт</h1>
             <div>
                 <div>
                     <p>Адрес электронной почты</p>
