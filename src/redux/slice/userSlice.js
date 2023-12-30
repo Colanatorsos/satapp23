@@ -9,11 +9,11 @@ const userSlice = createSlice({
     reducers: {
         setAuth: (state, action) => {
             if (action.payload) {
-                localStorage.setItem("auth", true);
                 state.auth = true;
                 state.email = action.payload;
+                localStorage.setItem("user", JSON.stringify(state));
             } else {
-                localStorage.removeItem("auth");
+                localStorage.removeItem("user");
                 state.auth = false;
                 state.email = action.payload;
             }

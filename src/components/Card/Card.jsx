@@ -5,17 +5,19 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 import { useActions } from "./../../hooks/useActions";
 import { Button, Flex } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ data }) => {
     const { addToCart, open } = useActions();
+    const nav = useNavigate();
     return (
         <div className={scss.Card}>
             <div className={scss.Card__imgs}>
-                <img src={photoOne} alt="" />
+                <img src={data.photos[0]} alt="" />
                 <div>
-                    <img src={photoOne} alt="" />
-                    <img src={photoOne} alt="" />
-                    <img src={photoOne} alt="" />
+                    {data.photos.slice(0, 3).map((image) => (
+                        <img src={image} alt="" />
+                    ))}
                 </div>
             </div>
             <div className={scss.Card__info}>
@@ -24,7 +26,9 @@ const Card = ({ data }) => {
                         <h3>{data.price} COM</h3>
                         <p>ЦЕНА</p>
                     </div>
-                    <button>ОТКРЫТЬ</button>
+                    <button onClick={() => nav("/product/" + data.id)}>
+                        ОТКРЫТЬ
+                    </button>
                 </div>
                 <div className={scss.Card__info_desc}>
                     <div className={scss.Card__info_desc_name}>

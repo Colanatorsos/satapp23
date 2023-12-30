@@ -29,6 +29,7 @@ const Header = () => {
                 <Link to="/filter">Поиск</Link>
                 <Link to="/signin">Войти</Link>
                 <Link to="/products">Продукт</Link>
+                <Link to="/product/create">Добавить продукт</Link>
                 <Link to="/settings">Настройки</Link>
             </div>
         </header>

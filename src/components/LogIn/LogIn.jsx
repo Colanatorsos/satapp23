@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import scss from "./LogIn.module.scss";
 import axios from "axios";
+import { useActions } from "../../hooks/useActions";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const LogIn = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
+
+    const user = useSelector((state) => state.user.auth);
+
+    const { setAuth } = useActions();
+
+    const nav = useNavigate();
+
+    useEffect(() => {
+        if (user.auth) nav("/products");
+    }, [nav, user.auth]);
 
     const inputHandler = (e) => {
         const { value, name } = e.target;
@@ -16,18 +29,20 @@ const LogIn = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         if (!!formData.email.trim() && !!formData.password.trim()) {
-            const config = {
-                body: JSON.stringify(formData),
-            };
+            setAuth(formData.email);
+            nav("/products");
 
-            axios
-                .post("http://127.0.0.1:8000/accounts/login/", config)
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((er) => {
-                    console.error(er);
-                });
+            // const config = {
+            //     body: JSON.stringify(formData),
+            // };
+            // axios
+            //     .post("http://127.0.0.1:8000/accounts/login/", config)
+            //     .then((res) => {
+            //         console.log(res);
+            //     })
+            //     .catch((er) => {
+            //         console.error(er);
+            //     });
         }
     };
     return (
