@@ -5,7 +5,6 @@ import LogInBlock from "../components/LogInBlock/LogInBlock";
 import DivRecentsearches from "../components/DivRecentsearches/DivRecentsearches";
 import { useSelector } from "react-redux";
 import Card from "../components/Card/Card";
-import { useNavigate } from "react-router-dom";
 import { useActions } from "../hooks/useActions";
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
     const { setAuth } = useActions();
 
     useEffect(() => {
-        console.log(user);
         if (!user.auth) {
             const localStorageUser = JSON.parse(localStorage.getItem("user"));
             if (localStorageUser) {
@@ -27,18 +25,18 @@ const Home = () => {
         <>
             <Header />
             <Ramification />
-            {user.auth ? (
+            {/* {user.auth ? (
                 <div>
                     {products.map((product) => (
                         <Card key={product.id} data={product} />
                     ))}
                 </div>
             ) : (
-                <>
-                    <LogInBlock />
-                    <DivRecentsearches />
-                </>
-            )}
+            )} */}
+            <>
+                <LogInBlock />
+                <DivRecentsearches />
+            </>
         </>
     );
 };
